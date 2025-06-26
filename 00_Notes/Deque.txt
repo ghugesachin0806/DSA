@@ -1,0 +1,136 @@
+// ------------------------------- Deque ------------------------------- //
+
+The Deque interface (Double Ended Queue) extends the Queue interface and provides operations for adding,
+removing, and examining elements from both ends.
+
+----------------------------------------------------------------------------------------------
+
+1. Insertion Methods
+
+a. First End (Head) Operations:
+    1. void addFirst(E e)
+        Inserts at the front, throwing IllegalStateException if capacity restricted
+
+    2. boolean offerFirst(E e)
+        Inserts at the front, returning false if capacity restricted
+
+b. Last End (Tail) Operations:
+    1. void addLast(E e)
+        Inserts at the end, throwing IllegalStateException if capacity restricted
+
+    2. boolean offerLast(E e)
+        Inserts at the end, returning false if capacity restricted
+----------------------------------------------------------------------------------------------
+
+2. Removal Methods
+
+a. First End (Head) Operations:
+    1. E removeFirst()
+        Removes and returns the first element, throws NoSuchElementException if empty
+
+    2. E pollFirst()
+        Removes and returns the first element, returns null if empty
+
+b. Last End (Tail) Operations:
+    1. E removeLast()
+        Removes and returns the last element, throws NoSuchElementException if empty
+
+    2. E pollLast()
+        Removes and returns the last element, returns null if empty
+----------------------------------------------------------------------------------------------
+
+3. Examination Methods
+
+a. First End (Head) Operations:
+    1. E getFirst()
+        Returns first element without removing, throws NoSuchElementException if empty
+
+    2. E peekFirst()
+        Returns first element without removing, returns null if empty
+
+b. Last End (Tail) Operations:
+    1. E getLast()
+        Returns last element without removing, throws NoSuchElementException if empty
+
+    2. E peekLast()
+        Returns last element without removing, returns null if empty
+----------------------------------------------------------------------------------------------
+
+4. Deque Operations
+
+1. int size()
+    Returns the number of elements in the deque.
+
+2. boolean isEmpty()
+    Returns true if the deque contains no elements. 
+----------------------------------------------------------------------------------------------
+
+5. Stack Operations (LIFO)
+
+1. void push(E e)
+    Pushes an element onto the stack (equivalent to addFirst)
+
+2. E pop()
+    Pops an element from the stack (equivalent to removeFirst)
+----------------------------------------------------------------------------------------------
+
+6. Queue Operations (FIFO)
+Inherited from Queue interface:
+
+1. boolean add(E e) (equivalent to addLast)
+
+2. boolean offer(E e) (equivalent to offerLast)
+
+3. E remove() (equivalent to removeFirst)
+
+4. E poll() (equivalent to pollFirst)
+
+5. E element() (equivalent to getFirst)
+
+6. E peek() (equivalent to peekFirst)
+----------------------------------------------------------------------------------------------
+---------> Imp methods
+1. void addFirst(E e)
+2. void addLast(E e)
+3. E removeFirst()
+4. E removeLast()
+5. E getFirst()
+6. E getLast()
+7. int size()
+8. boolean isEmpty()
+----------------------------------------------------------------------------------------------
+
+Deque<String> deque = new ArrayDeque<>();
+
+// Insertion at both ends
+deque.addFirst("Front1");
+deque.offerFirst("Front2");
+deque.addLast("Back1");
+deque.offerLast("Back2");
+        
+System.out.println("Deque: " + deque); // [Front2, Front1, Back1, Back2]
+
+// Examination
+System.out.println("First element: " + deque.getFirst());
+System.out.println("Last element: " + deque.getLast());
+System.out.println("Peek first: " + deque.peekFirst());
+System.out.println("Peek last: " + deque.peekLast());
+
+// Removal
+System.out.println("Removed first: " + deque.removeFirst());
+System.out.println("Polled last: " + deque.pollLast());
+System.out.println("Deque after removal: " + deque);
+
+// Stack operations
+deque.push("StackPush"); // addFirst
+System.out.println("After push: " + deque);
+System.out.println("Pop: " + deque.pop()); // removeFirst
+
+// Queue operations
+deque.add("QueueAdd"); // addLast
+System.out.println("Offer: " + deque.offer("QueueOffer")); // offerLast
+System.out.println("Element: " + deque.element()); // getFirst
+System.out.println("Peek: " + deque.peek()); // peekFirst
+System.out.println("Remove: " + deque.remove()); // removeFirst
+System.out.println("Poll: " + deque.poll()); // pollFirst
+----------------------------------------------------------------------------------------------

@@ -1,0 +1,228 @@
+PriorityQueue in Java
+
+A PriorityQueue in Java is a min-heap by default (smallest element has the highest priority), but it can also be configured
+as a max-heap using a custom comparator. It stores elements based on their natural ordering (if they implement Comparable)
+or a custom comparator.
+--------------------------------------------------------------------------------------------------------------------------
+
+1. Insertion Methods
+
+a. boolean add(E e)
+Inserts the specified element into the queue. Throws IllegalStateException if capacity restrictions prevent insertion.
+
+b. boolean offer(E e)
+Inserts the specified element into the queue. Returns true if successful, false if capacity restrictions prevent insertion
+(preferred over add for capacity-restricted queues).
+--------------------------------------------------------------------------------------------------------------------------
+
+2. Removal Methods
+
+a. E remove()
+Retrieves and removes the head of the queue. Throws NoSuchElementException if the queue is empty.
+
+b. E poll()
+Retrieves and removes the head of the queue, or returns null if the queue is empty.
+--------------------------------------------------------------------------------------------------------------------------
+
+3. Examination Methods
+
+a. E element()
+Retrieves but does not remove the head of the queue. Throws NoSuchElementException if the queue is empty.
+
+b. E peek()
+Retrieves but does not remove the head of the queue, or returns null if the queue is empty.
+--------------------------------------------------------------------------------------------------------------------------
+
+4. Query Operations
+
+a. void clear()
+Removes all elements from the queue.
+
+b. boolean contains(Object o)
+Returns true if the queue contains the specified element.
+
+c. boolean isEmpty()
+Returns true if the queue contains no elements.
+
+d. int size()
+Returns the number of elements in the queue.
+--------------------------------------------------------------------------------------------------------------------------
+
+// Create a min-heap PriorityQueue (default)
+PriorityQueue<Integer> pq = new PriorityQueue<>();
+
+// 1. Insertion Methods
+System.out.println("\n--- Insertion Methods ---");
+pq.add(30);   // throws IllegalStateException if capacity restricted
+pq.offer(10); // preferred method, returns false if capacity restricted
+pq.add(20);
+pq.offer(5);
+System.out.println("Queue after insertions: " + pq);
+
+// 2. Removal Methods
+System.out.println("\n--- Removal Methods ---");
+System.out.println("remove(): " + pq.remove()); // throws exception if empty
+System.out.println("poll(): " + pq.poll());     // returns null if empty
+System.out.println("Queue after removals: " + pq);
+
+// 3. Examination Methods
+System.out.println("\n--- Examination Methods ---");
+System.out.println("element(): " + pq.element()); // throws exception if empty
+System.out.println("peek(): " + pq.peek());       // returns null if empty
+System.out.println("Queue remains unchanged: " + pq);
+
+// 4. Query Operations
+System.out.println("\n--- Query Operations ---");
+System.out.println("contains(20): " + pq.contains(20));
+System.out.println("contains(99): " + pq.contains(99));
+System.out.println("size(): " + pq.size());
+System.out.println("isEmpty(): " + pq.isEmpty());
+
+// Clear the queue
+pq.clear();
+        System.out.println("\nAfter clear():");
+System.out.println("isEmpty(): " + pq.isEmpty());
+System.out.println("size(): " + pq.size());
+
+// Demonstrate exception cases
+try {
+    System.out.println("\nAttempting remove() on empty queue:");
+    pq.remove();
+} catch (Exception e) {
+    System.out.println("Caught: " + e.getClass().getSimpleName());
+
+try {
+    System.out.println("\nAttempting element() on empty queue:");
+    pq.element();
+} catch (Exception e) {
+    System.out.println("Caught: " + e.getClass().getSimpleName());
+}
+
+// Safe alternatives
+System.out.println("\nSafe alternatives for empty queue:");
+System.out.println("poll() on empty queue: " + pq.poll());
+System.out.println("peek() on empty queue: " + pq.peek());
+
+--------------------------------------------------------------------------------------------------------------------------
+---> MaxHeap in PriorityQueue
+
+// Create max heap for Integers
+PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
+        
+// Add elements
+maxHeap.add(30);
+maxHeap.offer(10);
+maxHeap.add(50);
+maxHeap.offer(20);
+maxHeap.add(40);
+        
+System.out.println("Max Heap (Integers):");
+        
+// Print and remove elements in descending order
+while (!maxHeap.isEmpty()) {
+    System.out.print(maxHeap.poll() + " ");
+}
+// Output: 50 40 30 20 10
+----------------------------------------------------------------------------------------
+// Create max heap for Strings (reverse natural alphabetical order)
+PriorityQueue<String> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
+        
+// Add elements
+maxHeap.add("banana");
+maxHeap.offer("apple");
+maxHeap.add("date");
+maxHeap.offer("cherry");
+maxHeap.add("blueberry");
+        
+System.out.println("Max Heap (Strings):");
+        
+// Print and remove elements in reverse alphabetical order
+while (!maxHeap.isEmpty()) {
+    System.out.print(maxHeap.poll() + " ");
+}
+// Output: date cherry blueberry banana apple
+----------------------------------------------------------------------------------------
+Equivalent to Custom Comparator
+
+// Creates a max heap (largest elements have highest priority)
+1. PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+
+// Creates a max heap (largest elements have highest priority)
+2. PriorityQueue<Integer> pq = new PriorityQueue<>((a, b) -> b.compareTo(a));
+
+3. PriorityQueue<Integer> pq = new PriorityQueue<>(new Comparator<Integer>() {
+    @Override
+    public int compare(Integer a, Integer b) {
+        return b.compareTo(a);
+    }
+});
+
+// Create max heap for Strings (reverse natural alphabetical order)
+4. PriorityQueue<String> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
+
+
+----------------------------------------------------------------------------------------
+--> Example for custom priority queue
+
+public class Student {
+    public int physics;
+    public int math;
+    public int chemistry;
+
+    // Constructor
+    public Student(int physics, int math, int chemistry) {
+        this.physics = physics;
+        this.math = math;
+        this.chemistry = chemistry;
+    }
+}
+
+import java.util.PriorityQueue;
+
+public class Main {
+    public static void main(String[] args) {
+        // Priority queues of Student objects sorted by subject marks in descending order
+
+        PriorityQueue<Student> physicsPQ = new PriorityQueue<>(
+            (a, b) -> Integer.compare(b.physics, a.physics)  // Descending physics
+        );
+
+        PriorityQueue<Student> mathPQ = new PriorityQueue<>(
+            (a, b) -> Integer.compare(b.math, a.math)        // Descending math
+        );
+
+        PriorityQueue<Student> chemistryPQ = new PriorityQueue<>(
+            (a, b) -> Integer.compare(b.chemistry, a.chemistry) // Descending chemistry
+        );
+
+        // Sample students
+        Student s1 = new Student(85, 92, 78);
+        Student s2 = new Student(90, 88, 84);
+        Student s3 = new Student(75, 95, 91);
+
+        // Add students to queues
+        physicsPQ.add(s1);
+        physicsPQ.add(s2);
+        physicsPQ.add(s3);
+
+        mathPQ.add(s1);
+        mathPQ.add(s2);
+        mathPQ.add(s3);
+
+        chemistryPQ.add(s1);
+        chemistryPQ.add(s2);
+        chemistryPQ.add(s3);
+
+        // Display top scorer in each subject
+        System.out.println("Top Physics Scorer: " + physicsPQ.peek().physics);
+        System.out.println("Top Math Scorer: " + mathPQ.peek().math);
+        System.out.println("Top Chemistry Scorer: " + chemistryPQ.peek().chemistry);
+    }
+}
+
+
+-> Output
+Top Physics Score: 90
+Top Math Score: 95
+Top Chemistry Score: 91
+

@@ -1,0 +1,43 @@
+In Java, there is no built-in Pair class in the standard library like in C++. 
+-------------------------------------------------------------------------------
+1. Map.Entry<Integer, Integer> pair = new AbstractMap.SimpleEntry<>(1, 2);
+
+// Access elements:
+int first = pair.getKey();
+int second = pair.getValue();
+-------------------------------------------------------------
+List<Map.Entry<Integer, Integer>> list = new ArrayList<>();
+
+// Insert pairs
+list.add(new AbstractMap.SimpleEntry<>(1, 2));
+list.add(new AbstractMap.SimpleEntry<>(3, 4));
+list.add(new AbstractMap.SimpleEntry<>(5, 6));
+
+// Access and print pairs
+for (Map.Entry<Integer, Integer> pair : list) {
+    System.out.println("First: " + pair.getKey() + ", Second: " + pair.getValue());
+}
+-------------------------------------------------------------------------------
+
+2. SimpleEntry<Integer, Integer> pair = new SimpleEntry<>(1, 2); 
+
+// Access elements:
+int first = pair.getKey();
+int second = pair.getValue();
+-------------------------------------------------------------
+List<SimpleEntry<Integer, Integer>> list = new ArrayList<>();
+
+// Insert pairs
+list.add(new SimpleEntry<>(1, 10));
+list.add(new SimpleEntry<>(2, 20));
+list.add(new SimpleEntry<>(3, 30));
+
+// Access and print pairs
+for (SimpleEntry<Integer, Integer> entry : list) {
+    System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
+}
+
+Output:
+Key: 1, Value: 10  
+Key: 2, Value: 20  
+Key: 3, Value: 30

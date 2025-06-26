@@ -1,0 +1,120 @@
+***************************************************************************************************************
+Array Operations
+---------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------
+0. Array Initialization
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+0.1 Declaration
+
+1. int[] arr1;
+2. int arr2[];
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+0.2 Instantiating Array
+
+arr1 = new int[5]; // Creates an array of sie 5 (Default values  = 0)
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+0.3 Declaration and Initialization in one step
+
+int[] arr = {10, 20, 30, 40, 50};
+---------------------------------------------------------------------------------------------------------------
+1. Array Sorting
+
+int[] arr = {5, 3, 8, 1};
+Arrays.sort(arr); // modifies original array
+System.out.println(Arrays.toString(arr)); // [1, 3, 5, 8]
+
+* Default behavior: Sorts in ascending order for all primitive types (int, char, double, etc.).
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+1.1 Sorting Subarrays
+
+int[] arr = {10, 7, 3, 5, 9, 2};
+Arrays.sort(arr, 1, 5); // sorts from index 1 to 4
+System.out.println(Arrays.toString(arr)); // [10, 3, 5, 7, 9, 2]
+
+* Arrays.sort(arr, fromIndex, toIndex) sorts from fromIndex (inclusive) to toIndex (exclusive).
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+1.2 Sorting in Descending Order (Custom Comparator)
+
+For descending sort, you need to use boxed types (like Integer[]) because primitive arrays (int[]) don't accept
+custom comparators:
+
+Integer[] arr = {4, 1, 3, 9, 2};
+Arrays.sort(arr, Collections.reverseOrder());
+System.out.println(Arrays.toString(arr)); // [9, 4, 3, 2, 1]
+
+* Collections.reverseOrder() only works with non-primitive types (Integer, Double, etc.).
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+1.3 Sorting Strings
+
+String[] names = {"Sachin", "Amit", "Zara", "John"};
+Arrays.sort(names);
+System.out.println(Arrays.toString(names)); // [Amit, John, Sachin, Zara]
+
+For descending order:
+Arrays.sort(names, Collections.reverseOrder());
+---------------------------------------------------------------------------------------------------------------
+2. Searching (Binary Search)
+
+int[] array;
+int index = Arrays.binarySearch(array, key);
+
+Returns:
+    1. index of the key, if found\
+    2. negative value (insertion point - 1) if not found
+
+* Java provides a very efficient way to search an element in a sorted array using the Arrays.binarySearch().
+** Array must be sorted before using binarySearch, else result is undefined.
+** Get negative value if key not found in array.
+
+int[] arr = {1, 3, 5, 7};
+int index = Arrays.binarySearch(arr, 5); // returns index 2
+---------------------------------------------------------------------------------------------------------------
+3. Filling Arrays
+
+int[] arr = new int[5];
+Arrays.fill(arr, 10);  // fills all elements with 10
+System.out.println(Arrays.toString(arr)); // [10, 10, 10, 10, 10]
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+3.1 Fill a Range in Array
+
+int[] arr = {1, 2, 3, 4, 5};
+Arrays.fill(arr, 1, 4, 99);  // fills index 1 to 3 with 99
+System.out.println(Arrays.toString(arr)); // [1, 99, 99, 99, 5]
+---------------------------------------------------------------------------------------------------------------
+4. Converting Arrays to Strings
+
+int[] a = {1, 2, 3};
+System.out.println(Arrays.toString(a)); // [1, 2, 3]
+
+int[][] b = {{1, 2}, {3, 4}};
+System.out.println(Arrays.deepToString(b)); // [[1, 2], [3, 4]]
+---------------------------------------------------------------------------------------------------------------
+5. Stream Conversion 
+
+int[] a = {1, 2, 3, 4};
+IntStream stream = Arrays.stream(a);
+stream.forEach(System.out::println);
+---------------------------------------------------------------------------------------------------------------
+6. Copying Arrays
+
+int[] original = {1, 2, 3, 4, 5};
+int[] copy = Arrays.copyOf(original, original.length); // Copy all elements
+System.out.println(Arrays.toString(copy)); // Output: [1, 2, 3, 4, 5]
+
+// Copy range
+int[] c = Arrays.copyOfRange(original, 1, 4); // [2, 3, 4]
+---------------------------------------------------------------------------------------------------------------
+7. arr.length
+
+int[] arr = {10, 20, 30};
+int len = arr.length;
+System.out.println(len); // Output: 3
+---------------------------------------------------------------------------------------------------------------
+8. Arrays copy
+
+int[] original = {1, 2, 3, 4, 5};
+int[] copy = Arrays.copyOf(original, original.length);
+
+int[] original = {1, 2, 3, 4, 5};
+int[] copy = original.clone();
+***************************************************************************************************************

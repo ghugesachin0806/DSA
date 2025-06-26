@@ -1,0 +1,78 @@
+//-------------------------- Queue --------------------------------//
+
+The Queue interface in Java extends the Collection interface and provides several methods for
+working with FIFO (First-In-First-Out) data structures.
+----------------------------------------------------------------------------------------------
+
+1. Insertion Methods
+
+a. boolean add(E e)
+Inserts the specified element into the queue. Throws IllegalStateException if capacity restrictions prevent insertion.
+
+b. boolean offer(E e)
+Inserts the specified element into the queue. Returns true if successful, false if capacity restrictions prevent insertion
+(preferred over add for capacity-restricted queues).
+----------------------------------------------------------------------------------------------
+
+2. Removal Methods
+
+a. E remove()
+Retrieves and removes the head of the queue. Throws NoSuchElementException if the queue is empty.
+
+b. E poll()
+Retrieves and removes the head of the queue, or returns null if the queue is empty.
+----------------------------------------------------------------------------------------------
+
+3. Examination Methods
+
+a. E element()
+Retrieves but does not remove the head of the queue. Throws NoSuchElementException if the queue is empty.
+
+b. E peek()
+Retrieves but does not remove the head of the queue, or returns null if the queue is empty.
+----------------------------------------------------------------------------------------------
+
+4. Query Operations
+
+a. void clear()
+Removes all elements from the queue.
+
+b. boolean contains(Object o)
+Returns true if the queue contains the specified element.
+
+c. boolean isEmpty()
+Returns true if the queue contains no elements.
+
+d. int size()
+Returns the number of elements in the queue.
+----------------------------------------------------------------------------------------------
+---------> Imp methods
+1. boolean add(E e)
+2. E remove()
+3. E peek()
+4. boolean isEmpty()
+5. int size()
+----------------------------------------------------------------------------------------------
+
+// Create a queue using ArrayDeque
+Queue<String> queue = new ArrayDeque<>();
+        
+// Add elements to the queue
+queue.add("First");
+queue.offer("Second"); // preferred when capacity restrictions exist
+queue.offer("Third");
+        
+System.out.println("Queue: " + queue); // [First, Second, Third]
+        
+// Examine the head of the queue
+System.out.println("Peek: " + queue.peek()); // First
+        
+// Remove elements from the queue
+System.out.println("Removed: " + queue.remove()); // First
+System.out.println("Queue after removal: " + queue); // [Second, Third]
+        
+// Check if queue is empty
+System.out.println("Is empty? " + queue.isEmpty()); // false
+        
+// Get queue size
+System.out.println("Size: " + queue.size()); // 2

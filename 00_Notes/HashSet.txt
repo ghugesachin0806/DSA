@@ -1,0 +1,61 @@
+Set
+
+A Set is a collection of unique elements with no duplicates.
+----------------------------------------------------------------------------------------------
+1. add(E e)
+
+→ Adds the specified element to the set if it's not already present
+→ Returns true if the element was added, false if it was already present
+
+Set<String> set = new HashSet<>();
+boolean added = set.add("Apple"); // returns true
+----------------------------------------------------------------------------------------------
+2. remove(Object o)
+
+→ Removes the specified element from the set if present
+→ Returns true if the element was removed
+
+boolean removed = set.remove("Apple"); // returns true
+----------------------------------------------------------------------------------------------
+3. contains(Object o)
+
+→ Checks if the set contains the specified element
+→ Returns true if found
+
+boolean hasApple = set.contains("Apple"); // returns false now
+----------------------------------------------------------------------------------------------
+4. size()
+
+R→ eturns the number of elements in the set
+
+int count = set.size();
+----------------------------------------------------------------------------------------------
+5. isEmpty()
+
+→ Checks if the set is empty
+→ Returns true if the set contains no elements
+
+boolean empty = set.isEmpty();
+----------------------------------------------------------------------------------------------
+6. clear()
+
+→ Removes all elements from the set
+
+set.clear();
+----------------------------------------------------------------------------------------------
+7. iterator()
+
+→ Returns an iterator over the elements in the set
+
+Iterator<String> it = set.iterator();
+while(it.hasNext()) {
+    System.out.println(it.next());
+}
+----------------------------------------------------------------------------------------------
+8. toArray()
+
+→ Returns an array containing all elements in the set
+
+Object[] array = set.toArray();
+----------------------------------------------------------------------------------------------
+

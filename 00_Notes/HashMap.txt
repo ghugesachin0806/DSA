@@ -1,0 +1,124 @@
+Map in Java
+
+1. put(K key, V value) – Add/Update a Key-Value Pair
+
+Map<String, Integer> map = new HashMap<>();
+map.put("Apple", 10);   // Adds {"Apple": 10}
+map.put("Banana", 20);  // Adds {"Banana": 20}
+map.put("Apple", 30);   // Updates Apple's value to 30
+System.out.println(map); // {Apple=30, Banana=20}
+----------------------------------------------------------------------------------------------
+
+2. get(Object key) – Retrieve a Value by Key
+
+Map<String, Integer> map = new HashMap<>();
+map.put("Apple", 10);
+map.put("Banana", 20);
+
+System.out.println(map.get("Apple"));   // 10
+System.out.println(map.get("Mango"));  // null (key not found)
+----------------------------------------------------------------------------------------------
+
+3. remove(Object key) – Remove a Key-Value Pair
+
+Map<String, Integer> map = new HashMap<>();
+map.put("Apple", 10);
+map.put("Banana", 20);
+
+map.remove("Apple"); // Removes {"Apple": 10}
+System.out.println(map); // {Banana=20}
+----------------------------------------------------------------------------------------------
+
+4. containsKey(Object key) – Check if Key Exists
+
+Map<String, Integer> map = new HashMap<>();
+map.put("Apple", 10);
+
+System.out.println(map.containsKey("Apple"));  // true
+System.out.println(map.containsKey("Mango")); // false
+----------------------------------------------------------------------------------------------
+
+5. containsValue(Object value) – Check if Value Exists
+
+Map<String, Integer> map = new HashMap<>();
+map.put("Apple", 10);
+
+System.out.println(map.containsValue(10));  // true
+System.out.println(map.containsValue(50)); // false
+----------------------------------------------------------------------------------------------
+
+6. size() – Get Number of Key-Value Pairs
+
+Map<String, Integer> map = new HashMap<>();
+map.put("Apple", 10);
+map.put("Banana", 20);
+
+System.out.println(map.size()); // 2
+----------------------------------------------------------------------------------------------
+
+7. isEmpty() – Check if Map is Empty
+
+Map<String, Integer> map = new HashMap<>();
+System.out.println(map.isEmpty()); // true
+
+map.put("Apple", 10);
+System.out.println(map.isEmpty()); // false
+----------------------------------------------------------------------------------------------
+
+8. keySet() – Get All Keys as a Set
+
+Map<String, Integer> map = new HashMap<>();
+map.put("Apple", 10);
+map.put("Banana", 20);
+
+Set<String> keys = map.keySet();
+System.out.println(keys); // [Apple, Banana]
+----------------------------------------------------------------------------------------------
+
+9. values() – Get All Values as a Collection
+
+Map<String, Integer> map = new HashMap<>();
+map.put("Apple", 10);
+map.put("Banana", 20);
+
+Collection<Integer> values = map.values();
+System.out.println(values); // [10, 20]
+----------------------------------------------------------------------------------------------
+
+10. entrySet() – Get All Key-Value Pairs (Entries)
+
+Map<String, Integer> map = new HashMap<>();
+map.put("Apple", 10);
+map.put("Banana", 20);
+
+for (Map.Entry<String, Integer> entry : map.entrySet()) {
+    System.out.println(entry.getKey() + " = " + entry.getValue());
+}
+// Output:
+// Apple = 10
+// Banana = 20
+----------------------------------------------------------------------------------------------
+
+11. putAll(Map m) – Merge Another Map
+
+Map<String, Integer> map1 = new HashMap<>();
+map1.put("Apple", 10);
+map1.put("Banana", 20);
+
+Map<String, Integer> map2 = new HashMap<>();
+map2.put("Mango", 30);
+map2.put("Grapes", 40);
+
+map1.putAll(map2); // Merges map2 into map1
+System.out.println(map1); // {Apple=10, Banana=20, Mango=30, Grapes=40}
+----------------------------------------------------------------------------------------------
+
+12. clear() – Remove All Entries
+
+Map<String, Integer> map = new HashMap<>();
+map.put("Apple", 10);
+map.put("Banana", 20);
+
+map.clear();
+System.out.println(map); // {}
+----------------------------------------------------------------------------------------------

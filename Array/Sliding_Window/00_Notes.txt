@@ -1,0 +1,9 @@
+---------------------------------------------------------------------------------------------------------------
+Patterns
+
+1. Constant Window
+2. Expanding and Shrinking of window
+    e.g. Longest subarray having sum of elements atmost K
+
+3. No. of Subarrays where <<condition>>
+4. Shortest/ Minimum window where << condition >>

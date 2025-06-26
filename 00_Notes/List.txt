@@ -1,0 +1,299 @@
+***************************************************************************************************************
+List Operations
+---------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------
+0. Declaration and Initialization
+
+List<String> arrayList = new ArrayList<>();
+List<String> linkedList = new LinkedList<>();
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+List<Integer> nums = List.of(10, 20, 30); // Immutable (unmodifiable, cannot add/remove/set)
+List<Integer> numbers1 = Arrays.asList(10, 20, 30); // Fixed-size list (can modify elements via set, but cannot add/remove)
+List<Integer> numbers2 = new ArrayList<>(Arrays.asList(10, 20, 30)); // Fully modifiable (can add, remove, set)
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+0.1 Collections.nCopies(...)
+
+int size = 5;
+int defaultValue = 0;
+
+List<Integer> list = new ArrayList<>(Collections.nCopies(size, defaultValue));
+System.out.println(list);  // Output: [0, 0, 0, 0, 0]
+---------------------------------------------------------------------------------------------------------------
+1. Basic Operations
+
+List<Integer> numbers = new ArrayList<>();
+
+// 1. add(E e) - Adds an element
+numbers.add(10);
+numbers.add(20);
+System.out.println(numbers); // [10, 20]
+
+// 2. addAll(Collection<? extends E> c) - Adds all from another collection
+List<Integer> moreNumbers = new ArrayList<>();
+moreNumbers.add(30);
+moreNumbers.add(40);
+numbers.addAll(moreNumbers);
+System.out.println(numbers); // [10, 20, 30, 40]
+
+// 3. remove(Object o) - Removes first occurrence of 20
+numbers.remove(2);         // Remove element at index 2
+numbers.remove(Integer.valueOf(20)); // Remove value 20
+System.out.println(numbers); // [10, 30, 40]
+
+// 4. clear() - Removes all elements
+numbers.clear();
+System.out.println(numbers); // []
+
+// 5. size() - Returns number of elements
+numbers.add(50);
+System.out.println(numbers.size()); // 1
+
+// 6. isEmpty() - Checks if collection is empty
+System.out.println(numbers.isEmpty()); // false
+
+// 7. contains(Object o) - Checks if element exists
+System.out.println(numbers.contains(50)); // true
+
+---------------------------------------------------------------------------------------------------------------
+2. Basic Operations
+
+List<Integer> numbers = new ArrayList<>();
+numbers.add(10);
+numbers.add(20);
+numbers.add(30);
+
+// 1. get(int index) - Gets element at index 1
+System.out.println(numbers.get(1)); // 20
+
+// 2. set(int index, E element) - Replaces element at index 1
+numbers.set(1, 25);
+System.out.println(numbers); // [10, 25, 30]
+
+// 3. add(int index, E element) - Inserts at index 1
+numbers.add(1, 15);
+System.out.println(numbers); // [10, 15, 25, 30]
+---------------------------------------------------------------------------------------------------------------
+3. Iterator
+
+List<Integer> numbers = Arrays.asList(10, 20, 30, 40);
+
+Iterator<Integer> it = numbers.iterator();
+while (it.hasNext()) {
+    Integer num = it.next();
+    System.out.println(num);
+}
+
+Output : 
+10 20 30 40
+
+// Removing Elements While Iterating (Safe)
+
+List<Integer> list = new ArrayList<>(Arrays.asList(10, 15, 20, 25, 30));
+Iterator<Integer> it = list.iterator();
+
+while (it.hasNext()) {
+    Integer val = it.next();
+    if (val % 10 == 0) {
+        it.remove();  // Safe removal
+    }
+}
+System.out.println(list); // [15, 25]
+
+// Enhanced For Loop (For Reference)
+
+for (int num : list) {
+    System.out.println(num);
+}
+
+---------------------------------------------------------------------------------------------------------------
+4. ListIterator
+
+* ListIterator is a bidirectional iterator that allows:
+    - Forward and backward traversal of a List
+    - Modifying, adding, or removing elements during iteration
+
+List<Integer> list = new ArrayList<>(Arrays.asList(10, 20, 30));
+ListIterator<Integer> it = list.listIterator();
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+public class Main {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>(Arrays.asList(10, 20, 30, 40));
+        ListIterator<Integer> it = list.listIterator();
+
+        System.out.println("Forward (with removal):");
+        while (it.hasNext()) {
+            int val = it.next();
+            System.out.println("Visited: " + val);
+
+            if (val == 20 || val == 40) {
+                it.remove(); // safely remove 20 and 40
+                System.out.println("Removed: " + val);
+            }
+        }
+
+        System.out.println("\nList after forward pass: " + list);
+
+        System.out.println("\nBackward traversal:");
+        while (it.hasPrevious()) {
+            System.out.println("Visited: " + it.previous());
+        }
+
+        System.out.println("\nFinal List: " + list);
+    }
+}
+
+Output : 
+
+Forward (with removal):
+Visited: 10
+Visited: 20
+Removed: 20
+Visited: 30
+Visited: 40
+Removed: 40
+
+List after forward pass: [10, 30]
+
+Backward traversal:
+Visited: 30
+Visited: 10
+
+Final List: [10, 30]
+---------------------------------------------------------------------------------------------------------------
+5. Array to List (primitive data types)
+
+int[] intArray = {1, 2, 3};
+List<Integer> intList = Arrays.stream(intArray)
+                              .boxed()
+                              .collect(Collectors.toList());
+---------------------------------------------------------------------------------------------------------------
+6. List to Array (primitive data types)
+
+List<Integer> intList = Arrays.asList(1, 2, 3);
+int[] intArray = intList.stream().mapToInt(i -> i).toArray();
+---------------------------------------------------------------------------------------------------------------
+7. Array to List (non-primitive data types)
+
+String[] array = {"apple", "banana", "orange"};
+List<String> list = Arrays.asList(array); // returns a fixed-size list.
+List<String> list = new ArrayList<>(Arrays.asList(array));
+---------------------------------------------------------------------------------------------------------------
+8. List to Array (non-primitive data types)
+
+List<String> list = Arrays.asList("apple", "banana", "orange");
+String[] array = list.toArray(new String[0]);
+---------------------------------------------------------------------------------------------------------------
+9. List to subList
+
+- startIndex is inclusive.
+- endIndex is exclusive.
+
+List<Integer> firstList = list.subList(start, mid + 1);
+List<Integer> secondList = list.subList(mid + 1, end + 1);
+--->
+- List.subList() returns a view of the original list.
+- When you do list.set(...) to overwrite the original list during merging, you may inadvertently affect firstList
+  and secondList, corrupting the input mid-merge.
+
+Make copies of the sublists so you don’t accidentally modify the same data you're reading from.
+List<Integer> firstList = new ArrayList<>(list.subList(start, mid + 1));
+List<Integer> secondList = new ArrayList<>(list.subList(mid + 1, end + 1));
+---------------------------------------------------------------------------------------------------------------
+10. list.get(index1).compareTo(list.get(index2))
+
+if (firstList.get(firstIndex).compareTo(secondList.get(secondIndex)) <= 0) {
+    // firstList element is smaller or equal
+} else {
+    // secondList element is smaller
+}
+
+-> It will be act like
+firstList.get(firstIndex).compareTo(secondList.get(secondIndex)) = firstList.get(firstIndex) - secondList.get(secondIndex)
+---------------------------------------------------------------------------------------------------------------
+11. Creating a 2D ArrayList in Java
+
+ArrayList<ArrayList<String>> matrix = new ArrayList<>();
+
+int rows = 3, cols = 3;
+List<List<Integer>> matrix = new ArrayList<>();
+
+for (int i = 0; i < rows; i++) {
+    List<Integer> row = new ArrayList<>();
+    for (int j = 0; j < cols; j++) {
+        row.add(i + j);  // example value
+    }
+    matrix.add(row);
+}
+
+// Print matrix
+for (List<Integer> row : matrix) {
+    System.out.println(row);
+}
+
+Output:
+
+[0, 1, 2]
+[1, 2, 3]
+[2, 3, 4]
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+11.1 Shortcut with Collections.nCopies(...)
+
+int rows = 3, cols = 4;
+int defaultValue = 0;
+
+List<List<Integer>> matrix = new ArrayList<>();
+for (int i = 0; i < rows; i++) {
+    matrix.add(new ArrayList<>(Collections.nCopies(cols, defaultValue)));
+}
+---------------------------------------------------------------------------------------------------------------
+***************************************************************************************************************
+Collections Utility Class Methods for List
+---------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------
+1. sort(List<T> list)
+
+List<Integer> list = Arrays.asList(30, 10, 20);
+Collections.sort(list);  // [10, 20, 30]
+---------------------------------------------------------------------------------------------------------------
+2. sort(List<T> list, Comparator)
+
+Collections.sort(list, (a, b) -> b - a);  // [30, 20, 10] (descending)
+---------------------------------------------------------------------------------------------------------------
+3. reverse(List<?>)
+
+Collections.reverse(list);  // [10, 20, 30] → [30, 20, 10]
+---------------------------------------------------------------------------------------------------------------
+4. swap(List<?>, int i, int j)
+Swaps elements at positions i and j.
+
+List<Integer> list = Arrays.asList(30, 10, 20);
+Collections.swap(list, 0, 2);  // Swaps first and last
+---------------------------------------------------------------------------------------------------------------
+5. fill(List<? super T>, T obj)
+Replaces all elements in the list with the given value.
+
+List<String> list = Arrays.asList("A", "B", "C");
+Collections.fill(list, "X");  // ["X", "X", "X"]
+---------------------------------------------------------------------------------------------------------------
+6. binarySearch(List<? extends Comparable>, key)
+
+int index = Collections.binarySearch(list, key);
+
+Returns:
+    - Index ≥ 0: if the key is found.
+    - Negative value: -(insertion point) - 1 if the key is not found.
+
+* The list must be sorted before calling binarySearch(), otherwise the result is undefined.
+* Use Collections.sort(list) before searching.
+
+List<Integer> list = Arrays.asList(30, 10, 20);
+Collections.sort(list);
+int index = Collections.binarySearch(list, 20);  // index of 20
+---------------------------------------------------------------------------------------------------------------
+7. max(Collection<? extends T>) and min(...)
+
+int max = Collections.max(list);
+int min = Collections.min(list);
+***************************************************************************************************************
