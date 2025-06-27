@@ -122,3 +122,11 @@ map.put("Banana", 20);
 map.clear();
 System.out.println(map); // {}
 ----------------------------------------------------------------------------------------------
+
+13. getOrDefault(getValue , defaultValue)
+
+instead of using below
+map.put(sum, map.containsKey(sum) ? map.get(sum) + 1 : 1);
+use below
+map.put(sum, map.getOrDefault(sum, 0) + 1);
+----------------------------------------------------------------------------------------------

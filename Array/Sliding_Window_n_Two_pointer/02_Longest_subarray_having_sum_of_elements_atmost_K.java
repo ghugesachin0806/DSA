@@ -1,4 +1,4 @@
-package Array.Sliding_Window;
+package Array.Sliding_Window_n_Two_pointer;
 
 // https://www.geeksforgeeks.org/problems/maximum-sum-of-subarray-less-than-or-equal-to-x4033/1
 

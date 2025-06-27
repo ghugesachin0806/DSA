@@ -1,4 +1,4 @@
-package Array.Sliding_Window;
+package Array.Sliding_Window_n_Two_pointer;
 
 // https://leetcode.com/problems/maximum-points-you-can-obtain-from-cards/description/
 

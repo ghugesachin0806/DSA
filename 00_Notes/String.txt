@@ -1,0 +1,103 @@
+1. Creating Strings
+
+String str1 = "Hello"; // Using string literal
+String str2 = new String("World"); // Using new keyword
+----------------------------------------------------------------------------------
+* Strings in Java are immutable - any operation that modifies a string actually creates a new string.
+----------------------------------------------------------------------------------
+
+2. String Concatenation
+
+String result = str1 + " " + str2; // "Hello World"
+String concatResult = str1.concat(" ").concat(str2); // Same result
+----------------------------------------------------------------------------------
+
+3. Equals (value comparison)
+
+boolean isEqual = str1.equals(str2); // false
+boolean isEqualIgnoreCase = "hello".equalsIgnoreCase("HELLO"); // true
+----------------------------------------------------------------------------------
+
+4. CompareTo (lexicographical comparison)
+
+    a. Returns 0 if strings are equal.
+    b. Returns negative if the calling string is "less than" the argument.
+    c. Returns positive if the calling string is "greater than" the argument.
+
+String s1 = "apple";
+String s2 = "banana";
+
+System.out.println(s1.compareTo(s2)); // -1 (a < b)
+System.out.println(s2.compareTo(s1)); // 1 (b > a)
+System.out.println("apple".compareTo("apple")); // 0 (equal)
+----------------------------------------------------------------------------------
+
+5. Length
+
+int len = str1.length(); // 5
+----------------------------------------------------------------------------------
+
+6. Check if empty
+
+boolean isEmpty = str1.isEmpty(); // false
+----------------------------------------------------------------------------------
+
+7. Character at position
+
+char ch = str1.charAt(1); // 'e'
+----------------------------------------------------------------------------------
+
+8. Contains
+
+boolean contains = str1.contains("ell"); // true
+----------------------------------------------------------------------------------
+
+9. StartsWith/EndsWith
+
+boolean starts = str1.startsWith("He"); // true
+boolean ends = str1.endsWith("lo"); // true
+----------------------------------------------------------------------------------
+
+10. Index of character/substring
+
+int index = str1.indexOf('l'); // 2
+int lastIndex = str1.lastIndexOf('l'); // 3
+----------------------------------------------------------------------------------
+
+11. Substring
+
+String sub = str1.substring(1, 4); // "ell"
+----------------------------------------------------------------------------------
+
+12. Case conversion
+
+String upper = str1.toUpperCase(); // "HELLO"
+String lower = str1.toLowerCase(); // "hello"
+----------------------------------------------------------------------------------
+
+13. Split into array
+
+String[] parts = "one,two,three".split(",");
+----------------------------------------------------------------------------------
+
+14. Trim whitespace
+
+String trimmed = "  hello  ".trim(); // "hello"
+----------------------------------------------------------------------------------
+
+15. Replace
+
+String replaced = str1.replace('l', 'p'); // "Heppo"
+----------------------------------------------------------------------------------
+
+16. public String replaceFirst(String regex, String replacement)
+
+In Java, the String.replaceFirst() method replaces the first substring of the string that matches
+a regular expression with a given replacement.
+
+e.g.
+
+String s = "abcabcabc";
+String result = s.replaceFirst("abc", "x");
+System.out.println(result); // Output: xabcabc
+----------------------------------------------------------------------------------

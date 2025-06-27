@@ -1,0 +1,100 @@
+1. Creating a StringBuilder
+
+// Empty StringBuilder with default capacity (16)
+StringBuilder sb1 = new StringBuilder();
+
+// StringBuilder with initial content
+StringBuilder sb2 = new StringBuilder("Hello");
+
+// StringBuilder with specified initial capacity
+StringBuilder sb3 = new StringBuilder(50); // Capacity = 50
+
+----------------------------------------------------------------------------------
+* StringBuilder is a mutable sequence of characters in Java, designed for efficient string manipulation
+----------------------------------------------------------------------------------
+
+2. Appending (Adding to the End)
+
+StringBuilder sb = new StringBuilder("Hello");
+sb.append(" World"); // "Hello World"
+sb.append(123);      // "Hello World123"
+sb.append(true);     // "Hello World123true"
+
+----------------------------------------------------------------------------------
+
+3. Inserting at a Specific Position
+
+StringBuilder sb = new StringBuilder("Hello");
+sb.insert(2, "Java"); // "HeJavallo" (Inserts at index 2)
+
+----------------------------------------------------------------------------------
+
+4. Deleting Characters
+
+StringBuilder sb = new StringBuilder("Hello World");
+sb.delete(5, 11); // "Hello" (Removes from index 5 to 10)
+sb.deleteCharAt(1); // "Hllo" (Removes character at index 1)
+
+----------------------------------------------------------------------------------
+
+5. Replacing a Substring
+
+StringBuilder sb = new StringBuilder("Hello World");
+sb.replace(6, 11, "Java"); // "Hello Java" (Replaces from index 6 to 10)
+
+----------------------------------------------------------------------------------
+
+6. Reversing the String
+
+StringBuilder sb = new StringBuilder("Hello");
+sb.reverse(); // "olleH"
+
+----------------------------------------------------------------------------------
+
+7. Getting Length & Capacity
+
+StringBuilder sb = new StringBuilder("Hello");
+int length = sb.length(); // 5
+int capacity = sb.capacity(); // 21 (default: 16 + length)
+
+----------------------------------------------------------------------------------
+
+8. Setting Length (Truncate or Expand)
+
+StringBuilder sb = new StringBuilder("Hello World");
+sb.setLength(5); // "Hello" (Truncates if shorter)
+sb.setLength(15); // "Hello" + 10 null chars (Expands if longer)
+
+----------------------------------------------------------------------------------
+
+9. Converting to String
+
+StringBuilder sb = new StringBuilder("Hello");
+String str = sb.toString(); // Converts to String
+
+----------------------------------------------------------------------------------
+
+10. Comparing StringBuilders
+
+Since StringBuilder does not override equals(), we compare by converting to String:
+
+StringBuilder sb1 = new StringBuilder("Hello");
+StringBuilder sb2 = new StringBuilder("Hello");
+boolean isEqual = sb1.toString().equals(sb2.toString()); // true
+
+----------------------------------------------------------------------------------
+
+11. Example: StringBuilder vs String Concatenation in Loop
+
+// Inefficient (creates multiple String objects)
+String result = "";
+for (int i = 0; i < 1000; i++) {
+    result += i; // Bad for performance!
+}
+
+// Efficient (uses single StringBuilder)
+StringBuilder sb = new StringBuilder();
+for (int i = 0; i < 1000; i++) {
+    sb.append(i);
+}
+String finalResult = sb.toString();
