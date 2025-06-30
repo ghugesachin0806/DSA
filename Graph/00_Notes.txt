@@ -1,0 +1,13 @@
+---------------------------------------------------------------------------------------------------------------
+The time complexity of both BFS (Breadth-First Search) and DFS (Depth-First Search) depends on the 
+graph representation.
+
+1. BFS (Breadth-First Search)
+    Adjacency List - O(V+E)
+    Adjacency Matrix - O(V^2)
+
+2. DFS (Depth-First Search)
+    Adjacency List - O(V+E)
+    Adjacency Matrix - O(V^2)
+---------------------------------------------------------------------------------------------------------------
+  

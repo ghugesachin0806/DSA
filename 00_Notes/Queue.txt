@@ -2,6 +2,9 @@
 
 The Queue interface in Java extends the Collection interface and provides several methods for
 working with FIFO (First-In-First-Out) data structures.
+
+1. Queue<Node> queue = new ArrayDeque<>(); // doesn't allow null value
+2. Queue<Node> queue = new LinkedList<>(); // allow null values
 ----------------------------------------------------------------------------------------------
 
 1. Insertion Methods

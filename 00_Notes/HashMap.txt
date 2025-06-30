@@ -130,3 +130,8 @@ map.put(sum, map.containsKey(sum) ? map.get(sum) + 1 : 1);
 use below
 map.put(sum, map.getOrDefault(sum, 0) + 1);
 ----------------------------------------------------------------------------------------------
+ 14. putIfAbsent()
+
+map.putIfAbsent(level, new ArrayList<>());
+map.get(level).add(root.data);
+----------------------------------------------------------------------------------------------

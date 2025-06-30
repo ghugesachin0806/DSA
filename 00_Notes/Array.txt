@@ -118,3 +118,31 @@ int[] copy = Arrays.copyOf(original, original.length);
 int[] original = {1, 2, 3, 4, 5};
 int[] copy = original.clone();
 ***************************************************************************************************************
+2D array
+---------------------------------------------------------------------------------------------------------------
+1. create a 2D array in Java:
+
+int rows = 3;
+int cols = 4;
+
+int[][] arr = new int[rows][cols];  // All values initialized to 0
+---------------------------------------------------------------------------------------------------------------
+2. To copy a 2D array in Java (deep copy, not just reference) for primitive types
+
+int[][] original = {
+    {1, 2},
+    {3, 4}
+};
+
+int[][] copy = new int[original.length][];
+for (int i = 0; i < original.length; i++) {
+    copy[i] = original[i].clone();  // deep copy each row
+}
+
+int[][] dp = new int[n][3];
+for (int i = 0; i < n; i++) {
+    Arrays.fill(dp[i], -1);
+}
+---------------------------------------------------------------------------------------------------------------
+
+***************************************************************************************************************
